@@ -23,32 +23,78 @@
 			"packages": "texlive,latexmk,curl,nano"
 		}
 	},
-	"extensions": [
-		"James-Yu.latex-workshop",
-		"GitHub.copilot",
-		"ms-vsliveshare.vsliveshare",
-		"ms-python.python",
-		"ms-python.black-formatter",
-		"ms-toolsai.jupyter",
-		"bierner.markdown-mermaid",
-		"DavidAnson.vscode-markdownlint",
-		"streetsidesoftware.code-spell-checker",
-		"bierner.github-markdown-preview",
-		"ms-vscode.wordcount"
-	]
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"James-Yu.latex-workshop",
+				"GitHub.copilot",
+				"ms-vsliveshare.vsliveshare",
+				"ms-python.python",
+				"ms-python.black-formatter",
+				"ms-toolsai.jupyter",
+				"bierner.markdown-mermaid",
+				"DavidAnson.vscode-markdownlint",
+				"streetsidesoftware.code-spell-checker",
+				"bierner.github-markdown-preview",
+				"ms-vscode.wordcount"
+			],
+			"settings": { // 这部分配置会被增加到 容器 配置中，不是当前工作空间配置
+				"latex-workshop.latex.clean.fileTypes": [
+					"*.aux",
+					"*.bbl",
+					"*.blg",
+					"*.idx",
+					"*.ind",
+					"*.lof",
+					"*.lot",
+					"*.out",
+					"*.toc",
+					"*.acn",
+					"*.acr",
+					"*.alg",
+					"*.glg",
+					"*.glo",
+					"*.gls",
+					"*.fls",
+					"*.log",
+					"*.fdb_latexmk",
+					"*.snm",
+					"*.synctex(busy)",
+					"*.synctex.gz(busy)",
+					"*.nav",
+					"*.vrb",
+					"*.gz", // Added Manually
+					"*.bcf", // Added Manually
+					"*.nlo", // Added Manually
+					"*.run.xml" // Added Manually
+				],
+				// Edit the following property to change export directory
+				"latex-workshop.latex.outDir": "./PDF",
+				"latex-workshop.latex.autoClean.run": "onBuilt",
+				"latex-workshop.latex.build.forceRecipeUsage": false,
+				"latex-workshop.synctex.afterBuild.enabled": true,
+				"latex-workshop.view.pdf.viewer": "tab",
+				"latex-workshop.latex.clean.subfolder.enabled": true,
+				"latex-workshop.latex.magic.args": [
+					"-output-directory=PDF", // to change the output directory
+					"%DOC%"
+				],
+				// Remove / comment the next 3 lines to remove dark view for pdf
+				"latex-workshop.view.pdf.color.dark.pageColorsBackground": "#171717", // For Dark Viewwer
+				"latex-workshop.latex.autoBuild.run": "never",
+				"latex-workshop.view.pdf.color.dark.pageColorsForeground": "#FFFFFF", // For Dark Viewer
+				"latex-workshop.view.pdf.color.dark.backgroundColor": "#171717", // For Dark Viewer
+				"editor.formatOnSave": true,
+				"latex-workshop.codespaces.portforwarding.openDelay": 20000,
+				// 上面全部继承自原项目
+				// 这两个值定义了从修改 latex 源码到预览 pdf 中间的延迟，如果你的电脑本来就很慢，这个值可以适当延长
+				"latex-workshop.latex.watch.delay": 500,
+				"latex-workshop.latex.watch.pdf.delay": 500,
+				// 只对 .tex 文件进行拼写检查，如果有其他文件需要检查，可以添加到这里
+				"cSpell.files": [
+					"*.tex"
+				]
+			}
+		}
+	},
 }
