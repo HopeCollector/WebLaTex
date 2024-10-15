@@ -45,20 +45,9 @@
 	"latex-workshop.view.pdf.color.dark.pageColorsForeground": "#FFFFFF", // For Dark Viewer
 	"latex-workshop.view.pdf.color.dark.backgroundColor": "#171717", // For Dark Viewer
 	"editor.formatOnSave": true,
-	"latex-workshop.latex.pdfWatch.delay": 500,
-	//"latex-workshop.latex.watch.delay": 500, // Deprecated. See here: https://github.com/sanjib-sen/WebLaTex/issues/8
 	"latex-workshop.codespaces.portforwarding.openDelay": 20000,
-	"grammarly.files.include": [
-		"**/*.tex"
-	],
-	// Remove the following to check .md files with Grammarly.
-	"grammarly.files.exclude": [
-		"**/*.md"
-	],
-	"grammarly.selectors": [
-		{
-			"language": "latex",
-			"scheme": "file"
-		}
-	]
-}
+	// 上面全部继承自原项目
+	
+	// 这两个值定义了从修改 latex 源码到预览 pdf 中间的延迟，如果你的电脑本来就很慢，这个值可以适当延长
+	"latex-workshop.latex.watch.delay": 500,
+	"latex-workshop.latex.watch.pdf.delay": 500
