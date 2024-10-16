@@ -20,7 +20,7 @@
 		},
 		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
 			"upgradePackages": true,
-			"packages": "texlive,latexmk,curl,nano"
+			"packages": "texlive,latexmk,pandoc,curl,nano"
 		}
 	},
 	"customizations": {
