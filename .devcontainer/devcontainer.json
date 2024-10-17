@@ -3,26 +3,24 @@
 {
 	"name": "Ubuntu",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"image": "texlive/texlive:latest-full",
+	"remoteUser": "vscode",
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {
 			"installZsh": true,
 			"installOhMyZsh": true,
 			"installOhMyZshConfig": true,
 			"upgradePackages": true,
-			"username": "automatic",
-			"userUid": "automatic",
-			"userGid": "automatic"
+			"username": "vscode",
+			"userUid": "1001",
+			"userGid": "1001"
 		},
 		"ghcr.io/devcontainers/features/conda:1": {
 			"addCondaForge": true,
 			"version": "latest"
-		},
-		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
-			"upgradePackages": true,
-			"packages": "texlive,latexmk,pandoc,curl,nano"
 		}
 	},
+	"onCreateCommand": "bash .devcontainer/on_create.sh",
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -32,11 +30,11 @@
 				"ms-python.python",
 				"ms-python.black-formatter",
 				"ms-toolsai.jupyter",
-				"bierner.markdown-mermaid",
 				"DavidAnson.vscode-markdownlint",
 				"streetsidesoftware.code-spell-checker",
-				"bierner.github-markdown-preview",
-				"ms-vscode.wordcount"
+				"ms-vscode.wordcount",
+				"yzhang.markdown-all-in-one",
+				"shd101wyy.markdown-preview-enhanced"
 			],
 			"settings": { // 这部分配置会被增加到 容器 配置中，不是当前工作空间配置
 				"latex-workshop.latex.clean.fileTypes": [
@@ -69,14 +67,14 @@
 					"*.run.xml" // Added Manually
 				],
 				// Edit the following property to change export directory
-				"latex-workshop.latex.outDir": "./PDF",
+				"latex-workshop.latex.outDir": "./build",
 				"latex-workshop.latex.autoClean.run": "onBuilt",
 				"latex-workshop.latex.build.forceRecipeUsage": false,
 				"latex-workshop.synctex.afterBuild.enabled": true,
 				"latex-workshop.view.pdf.viewer": "tab",
 				"latex-workshop.latex.clean.subfolder.enabled": true,
 				"latex-workshop.latex.magic.args": [
-					"-output-directory=PDF", // to change the output directory
+					"-output-directory=build", // to change the output directory
 					"%DOC%"
 				],
 				// Remove / comment the next 3 lines to remove dark view for pdf
